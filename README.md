@@ -1,42 +1,35 @@
 # Ollama Chat Interface
 
-Eine moderne HTML-Webseite zur Kommunikation mit einem Ollama-Server über eine benutzerfreundliche Chat-Oberfläche.
+Eine einfache HTML-Webseite zur Kommunikation mit einem Ollama-Server über eine benutzerfreundliche Chat-Oberfläche.
 
 ## Features
 
 - **Chat-Interface**: Interaktive Unterhaltung mit Ollama-Modellen
-- **Text-Vervollständigung**: Generierung von Textfortsetzungen
-- **Modell-Auswahl**: Anzeige und Auswahl verfügbarer Modelle
-- **Chat-Speicherung**: Automatisches Speichern und Laden von Chats
-- **Export/Import**: Speicherung als JSON- und TXT-Dateien
-- **Zeitstempel**: Anzeige der Nachrichtenzeiten
+- **Reim-Assistent**: System-Prompt für Antworten in Reimform
+- **Festes Modell**: Verwendet standardmäßig `llama3.1:8b`
 - **Responsive Design**: Optimiert für Desktop und Mobile
 - **Moderne UI**: Glasmorphismus-Design mit sanften Animationen
+- **Einfache Bedienung**: Minimalistisches Interface ohne Ablenkungen
 
 ## API-Endpunkte
 
 Die Anwendung nutzt folgende Ollama-API-Endpunkte:
 
-- `POST /api/chat` - Chat-Vervollständigung
-- `POST /api/generate` - Text-Vervollständigung  
-- `GET /api/tags` - Verfügbare Modelle auflisten
+- `POST /api/chat` - Chat-Vervollständigung mit System-Prompt
 
 ## Server-Konfiguration
 
 Standard-Server: `https://f2ki-h100-1.f2.htw-berlin.de:11435`
+Standard-Modell: `llama3.1:8b`
 
 ## Verwendung
 
-1. **Modelle laden**: Klicken Sie auf "Modelle laden" um verfügbare Modelle anzuzeigen
-2. **Modell auswählen**: Wählen Sie ein Modell aus der Dropdown-Liste oder klicken Sie auf einen Modell-Tag
-3. **Nachricht senden**: 
-   - Geben Sie Ihre Frage ein
-   - Klicken Sie auf "Chat senden" für eine Unterhaltung
-   - Klicken Sie auf "Text vervollständigen" für Textgenerierung
-4. **Chat verwalten**: 
-   - Nutzen Sie "Chat leeren" um die Unterhaltung zu löschen
-   - Klicken Sie auf "Chat speichern" um den Chat als JSON/TXT zu exportieren
-   - Klicken Sie auf "Chat laden" um einen gespeicherten Chat zu importieren
+1. **Nachricht eingeben**: Geben Sie Ihre Frage in das Textfeld ein
+2. **Senden**: 
+   - Klicken Sie auf "Chat senden" 
+   - Oder drücken Sie Enter (ohne Shift) 
+3. **Antwort erhalten**: Der Assistent antwortet in Reimform
+4. **Weiterchatten**: Alle Nachrichten bleiben während der Session sichtbar
 
 ## Technische Details
 
@@ -45,9 +38,7 @@ Standard-Server: `https://f2ki-h100-1.f2.htw-berlin.de:11435`
 - `index.html` - Hauptseite mit Chat-Interface
 - `style.css` - Styling und responsive Design
 - `script.js` - Haupt-JavaScript für UI und API-Kommunikation
-- `chatStorage.js` - Storage-Manager für Chat-Speicherung
 - `README.md` - Diese Dokumentation
-- `chats/` - Ordner für Chat-Dateien
 
 ### Funktionalitäten
 
@@ -55,9 +46,8 @@ Standard-Server: `https://f2ki-h100-1.f2.htw-berlin.de:11435`
 - **Fehlerbehandlung**: Umfassende Fehlerbehandlung und Benutzer-Feedback
 - **Responsive Design**: Optimiert für verschiedene Bildschirmgrößen
 - **Accessibility**: Tastaturnavigation und semantisches HTML
-- **Lokale Speicherung**: Automatisches Speichern im Browser-LocalStorage
-- **Export/Import**: JSON- und TXT-Export für Chat-Archivierung
-- **Zeitstempel**: Anzeige der Nachrichtenzeiten für bessere Übersicht
+- **Session-basiert**: Chat-Verlauf bleibt während der Browser-Session erhalten
+- **System-Prompt**: Konfigurierter Assistent für Reim-Antworten
 
 ### Browser-Unterstützung
 
@@ -90,23 +80,10 @@ Falls CORS-Probleme auftreten, stellen Sie sicher, dass der Ollama-Server entspr
 
 ### Häufige Probleme
 
-1. **Modelle laden nicht**: Überprüfen Sie die Serververbindung
+1. **Keine Antwort**: Überprüfen Sie die Serververbindung
 2. **CORS-Fehler**: Möglicherweise ist ein Proxy erforderlich
-3. **Keine Antwort**: Überprüfen Sie die Modell-Verfügbarkeit
-4. **Chat-Import fehlgeschlagen**: Überprüfen Sie das JSON-Format
-5. **Speicherung funktioniert nicht**: Überprüfen Sie die Browser-Einstellungen für LocalStorage
-
-### Chat-Dateiformate
-
-**JSON-Export** (empfohlen):
-- Vollständige Metadaten (Zeitstempel, Session-ID)
-- Einfacher Re-Import möglich
-- Strukturierte Daten für weitere Verarbeitung
-
-**TXT-Export**:
-- Menschenlesbare Formatierung
-- Einfache Archivierung
-- Kein Re-Import möglich
+3. **Modell nicht verfügbar**: Überprüfen Sie die Modell-Verfügbarkeit auf dem Server
+4. **Leere Nachricht**: Geben Sie eine Nachricht ein bevor Sie senden
 
 ### Debugging
 
@@ -118,15 +95,7 @@ MIT License - Freie Verwendung für persönliche und kommerzielle Zwecke.
 
 ### Code-Architektur
 
-- **Modularer Aufbau**: Storage-Funktionalität in separater Datei
-- **ChatStorageManager**: Eigenständige Klasse für alle Speicheroperationen
-- **Callback-System**: Flexible Kommunikation zwischen Modulen
-- **Error Handling**: Umfassende Fehlerbehandlung in allen Modulen
-
-### ChatStorageManager Features
-
-- **localStorage Integration**: Automatische Browser-Speicherung
-- **Auto-Save**: Intelligente Datei-Speicherung
-- **Export/Import**: JSON und TXT Unterstützung
-- **Session Management**: Eindeutige Session-IDs
-- **Callback Support**: Flexible UI-Updates
+- **Einfacher Aufbau**: Alle Funktionalitäten in einer Datei
+- **Fokussiert**: Nur Chat-Funktionalität ohne zusätzliche Features
+- **Wartbar**: Klarer, verständlicher Code
+- **Erweiterbar**: Einfach zu modifizieren und zu erweitern
