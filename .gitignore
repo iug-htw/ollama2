@@ -1,0 +1,57 @@
+# Dependencies
+node_modules/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# OS
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# Logs
+*.log
+logs/
+
+# Runtime data
+pids
+*.pid
+*.seed
+*.pid.lock
+
+# Coverage directory used by tools like istanbul
+coverage/
+
+# Temporary folders
+tmp/
+temp/
+
+# Optional npm cache directory
+.npm
+
+# Optional eslint cache
+.eslintcache
+
+# Backup files
+*.bak
+*.tmp
+
+# Environment variables
+.env
+.env.local
+.env.development.local
+.env.test.local
+
+# Chat-Exports (optional - entfernen Sie diese Zeile wenn Sie Exports committen möchten)
+# ollama_chat_*.json
+# ollama_chat_*.txt
+
+# User-specific files
+*.user
