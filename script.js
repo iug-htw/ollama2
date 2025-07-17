@@ -21,13 +21,13 @@ document.addEventListener('DOMContentLoaded', function() {
 });
 
 function setupEventListeners() {
-    sendChatBtn.addEventListener('click', () => sendMessage('chat'));
+    sendChatBtn.addEventListener('click', sendMessage);
     
     // Enter key to send message
     userInput.addEventListener('keydown', function(event) {
         if (event.key === 'Enter' && !event.shiftKey) {
             event.preventDefault();
-            sendMessage('chat');
+            sendMessage();
         }
     });
 }
@@ -51,16 +51,6 @@ function addMessage(content, sender = 'user') {
     const messageDiv = document.createElement('div');
     messageDiv.className = `message ${sender}`;
     
-    const timestamp = new Date().toISOString();
-    const messageData = {
-        content: content,
-        sender: sender,
-        timestamp: timestamp
-    };
-    
-    // Add to chat history array
-    chatHistory.push(messageData);
-    
     if (sender === 'assistant') {
         // Format assistant messages with proper line breaks
         messageDiv.innerHTML = content.replace(/\n/g, '<br>');
@@ -68,19 +58,12 @@ function addMessage(content, sender = 'user') {
         messageDiv.textContent = content;
     }
     
-    // Add timestamp to message
-    const timestampSpan = document.createElement('span');
-    timestampSpan.className = 'timestamp';
-    timestampSpan.textContent = new Date(timestamp).toLocaleTimeString();
-    messageDiv.appendChild(timestampSpan);
-    
     document.getElementById('chatHistory').appendChild(messageDiv);
     document.getElementById('chatHistory').scrollTop = document.getElementById('chatHistory').scrollHeight;
 }
 
-async function sendMessage(type = 'chat') {
+async function sendMessage() {
     const message = userInput.value.trim();
-    const selectedModel = DEFAULT_MODEL;
     
     if (!message) {
         updateStatus('Bitte geben Sie eine Nachricht ein');
@@ -93,9 +76,9 @@ async function sendMessage(type = 'chat') {
     
     try {
         setLoading(true);
-        updateStatus(`Sende Anfrage an ${selectedModel}...`);
+        updateStatus(`Sende Anfrage an ${DEFAULT_MODEL}...`);
         
-        await sendChatRequest(message, selectedModel);
+        await sendChatRequest(message, DEFAULT_MODEL);
         
         updateStatus('Antwort erhalten');
         
