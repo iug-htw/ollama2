@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ollama Chat Interface</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>Ollama Chat Interface</h1>
+            <div class="server-info">
+                <span>Server: https://f2ki-h100-1.f2.htw-berlin.de:11435</span>
+                <span>Modell: llama3.1:8b</span>
+            </div>
+        </header>
+
+        <div class="chat-container">
+            <div id="chatHistory" class="chat-history"></div>
+            
+            <div class="input-section">
+                <div class="input-group">
+                    <textarea id="userInput" placeholder="Geben Sie Ihre Frage hier ein..." rows="3"></textarea>
+                    <div class="button-group">
+                        <button id="sendChat" class="btn-primary">Chat senden</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="status-bar">
+            <div id="statusMessage" class="status-message">Bereit</div>
+            <div class="spinner" id="loadingSpinner"></div>
+        </div>    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
