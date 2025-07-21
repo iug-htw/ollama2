@@ -6,7 +6,6 @@ const SYSTEM_PROMPT = 'Du bist ein freundliches Assistenzsystem das immer in Rei
 // DOM Elements
 const userInput = document.getElementById('userInput');
 const statusMessage = document.getElementById('statusMessage');
-const loadingSpinner = document.getElementById('loadingSpinner');
 
 // Buttons
 const sendChatBtn = document.getElementById('sendChat');
@@ -35,10 +34,8 @@ function setupEventListeners() {
 function setLoading(loading) {
     isLoading = loading;
     if (loading) {
-        loadingSpinner.classList.add('active');
         sendChatBtn.disabled = true;
     } else {
-        loadingSpinner.classList.remove('active');
         sendChatBtn.disabled = false;
     }
 }
@@ -84,7 +81,7 @@ async function sendMessage() {
         
     } catch (error) {
         console.error('Fehler beim Senden der Nachricht:', error);
-        addMessage(`Fehler: ${error.message}`, 'system');
+        addMessage(`Fehler: ${error.message}`, 'assistant');
         updateStatus('Fehler beim Senden der Nachricht');
     } finally {
         setLoading(false);
